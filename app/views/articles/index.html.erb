@@ -3,22 +3,44 @@
 
   <p class="font-monospace">Our blog has <%= Article.public_count %> articles and counting!</p>
 
-  <ul>
-    <% @articles.each do |article| %>
-      <% unless article.archived? %>
-        <li class="font-monospace">
-          <%= link_to article.title, article %>
-        </li>
-      <% end %>
-    <% end %>
-  </ul>
+
+  <table class="table">
+    <thead>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Status</th>
+      <th>Creation time</th>
+      <th>Update time</th>
+      <th>Action</th>
+      <th colpan="3"></th>
+    </thead>
+      
+    <tbody>
+      <tr>
+        <% @articles.each do |article| %>
+        <% unless article.archived? %>
+        <td><%= article.id %></td>
+        <td><%= article.title %></td>
+        <td><%= article.status %></td>
+        <td><%= article.created_at %></td>
+        <td><%= article.updated_at %></td>
+        <td><%= article.updated_at %></td>
+        <td><a href="/articles/<%=article.id%>">See</a></td>
+      </tr>
+      <%end%>
+      <%end%>
+    </tbody>
+  </table>
+
+  
+
 
   <p class="font-monospace"><%= link_to "New Article", new_article_path %></p>
 </div>
 
 <style>
 .index{
-  width: 25%;
+  width: 45%;
   margin: 0 auto;
   margin-top: 2em;
 }
