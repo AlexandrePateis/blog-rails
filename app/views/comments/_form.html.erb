@@ -1,18 +1,30 @@
 <%= form_with model: [ @article, @article.comments.build ] do |form| %>
   <p>
-    <%= form.label :commenter %><br>
-    <%= form.text_field :commenter %>
+    <%= form.label :commenter, :class => "font-monospace" %><br>
+    <%= form.text_field :commenter,:class => "form-control" %>
   </p>
   <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
+    <%= form.label :body, :class => "font-monospace" %><br>
+    <%= form.text_area :body,:class => "form-control" %>
   </p>
   <p>
-    <%= form.label :status %><br>
-    <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+    <%= form.label :status, :class => "font-monospace" %><br>
+    <%= form.select :status, (['public', 'private', 'archived']), {}, class: "form-select" %>
   </p>
 
-  <p>
-    <%= form.submit %>
-  </p>
+  <div class="btns"> 
+    <%= form.submit :class => "btn btn-primary" %>
+    <a href="/articles" class="btn btn-secondary">Voltar</a>
+  </div>
+
+  
 <% end %>
+
+<style>
+.btns{
+  display: flex;
+  gap:1em;
+  margin-top: 15px;
+}
+
+</style>

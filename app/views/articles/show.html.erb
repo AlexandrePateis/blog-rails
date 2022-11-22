@@ -1,20 +1,39 @@
-<h1><%= @article.title %></h1>
+<div class="post-articles">
+  <h1 class="font-monospace"><%= @article.title %></h1>
 
-<p><%= @article.body %></p>
+  <p class="font-monospace"><%= @article.body %></p>
 
-<ul>
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Destroy", article_path(@article), data: {
+  <ul class="op-art">
+    <li><%= link_to "Edit", edit_article_path(@article) %></li>
+    <li><%= link_to "Destroy", article_path(@article), data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   } %></li>
-  <li><a href="/articles">Voltar</a></li>
-</ul>
+  </ul>
 
-<h2>Comments</h2>
+  <h2 class="font-monospace">Comments</h2>
 
-<%= render @article.comments %>
+  <%= render @article.comments %>
 
-<h2>Add a comment:</h2>
+  <h2 class="font-monospace">Add a comment:</h2>
 
-<%= render 'comments/form' %>
+  <%= render 'comments/form' %>
+   <ul>
+    
+    
+  </ul>
+</div>
+
+<style>
+.post-articles{
+  width: 33%;
+  margin: 0 auto;
+}
+.op-art, a{
+  list-style :none;
+  display: flex;
+  gap: 1em;
+  padding: 0;
+  text-decoration:none;
+}
+</style>

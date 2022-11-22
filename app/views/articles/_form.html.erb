@@ -1,28 +1,47 @@
+<div class="form-article">
 <%= form_with model: article do |form| %>
   <div>
-    <%= form.label :Title %><br>
-    <%= form.text_field :title %>
+    <%= form.label :Title, :class => "font-monospace" %><br>
+    <%= form.text_field :title, :class => "form-control" %>
     <% article.errors.full_messages_for(:title).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
 
   <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %><br>
+    <%= form.label :body, :class => "font-monospace" %><br>
+    <%= form.text_area :body, :class => "form-control"  %><br>
     <% article.errors.full_messages_for(:body).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
 
   <div>
-    <%= form.label :status %><br>
-    <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+    <%= form.label :status, :class => "font-monospace" %><br>
+    <%= form.select :status, (['public', 'private', 'archived']), {}, class: "form-select" %>
   </div>
 
   
-  <div>
-    <%= form.submit %>
+  <div class="btns">
+    <%= form.submit :class => "btn btn-primary font-monospace" %>
+    <a href="/articles" class="font-monospace btn btn-secondary">Voltar</a>
   </div>
-  <a href="/articles">Voltar</a>
+  
 <% end %>
+</div>
+
+<style>
+.form-article{
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 2em;
+}
+.form-select{
+  width: 40%;
+}
+.btns{
+  display: flex;
+  gap:1em;
+  margin-top: 15px;
+}
+</style>
