@@ -6,7 +6,6 @@ class ArticlesController < ApplicationController
   def index
     @q = Article.ransack(params[:q])
     @articles = @q.result.includes(:comments)
-    @op = ['public', 'private', 'archived']
   end
 
   def show

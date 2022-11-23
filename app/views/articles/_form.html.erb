@@ -1,33 +1,29 @@
-<div class="form-article">
-<%= form_with model: article do |form| %>
+<div class="form-article ">
+<%= simple_form_for @article do |f| %>
+  <!-Input do title->
   <div>
-    <%= form.label :Title, :class => "font-monospace" %><br>
-    <%= form.text_field :title, :class => "form-control" %>
-    <% article.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+    <%= f.input :title %>
   </div>
 
+  <!-Input do body->
   <div>
-    <%= form.label :body, :class => "font-monospace" %><br>
-    <%= form.text_area :body, :class => "form-control"  %><br>
-    <% article.errors.full_messages_for(:body).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+    <%= f.label :body %><br>
+    <%= f.text_area :body, class: 'form-control' %><br>
   </div>
 
+  <!-Input do status->
   <div>
-    <%= form.label :status, :class => "font-monospace" %><br>
-    <%= form.select :status, (['public', 'private', 'archived']), {}, class: "form-select" %>
+    <%= f.label :status%><br>
+    <%=f.input :status, collection: [('public'), ('private'), ('archived')], label: false%>
   </div>
-
   
-  <div class="btns">
-    <%= form.submit :class => "btn btn-primary font-monospace" %>
+  <!-Div que separa os botões->
+  <div class="btnss">
+    <%= f.submit "Enviar", class: "btn btn-primary" %>
     <a href="/articles" class="font-monospace btn btn-secondary">Voltar</a>
   </div>
-  
 <% end %>
+
 </div>
 
 <style>
@@ -36,12 +32,14 @@
   margin: 0 auto;
   margin-top: 2em;
 }
-.form-select{
-  width: 40%;
-}
-.btns{
+
+.btnss{
   display: flex;
-  gap:1em;
+  align-items: center !important;
   margin-top: 15px;
+  gap:1em;
+}
+.btn-secondary{
+  margin: 0 !important;
 }
 </style>
