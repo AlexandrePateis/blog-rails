@@ -1,7 +1,28 @@
 <div class="index">
   <h1 class="font-monospace fs-1" >Articles</h1>
+    <p class="font-monospace">Our blog has <%= Article.public_count %> articles and counting!</p>
 
-  <p class="font-monospace">Our blog has <%= Article.public_count %> articles and counting!</p>
+    <!-Filtra por titulo do artigo->
+    <%= search_form_for @q do |f| %>
+      <div class="separetor"><%= f.search_field :title_cont, :class =>"form-control me-2", :placeholder => "Pesquisar por titulo" %>
+      <%= f.submit :class=>"btn btn-primary" %>
+    </div>
+    
+    <!-Filtra por status do artigo->
+    <div class="form-group separetor">
+      <%= f.select(:status_eq, options_for_select(@op), { include_blank: true }, {class: "form-control" }) %>
+      <%= f.submit :class=>"btn btn-primary" %>
+    </div>
+    <% end %>
+
+    <!-Filtra por conteúdo do comentárioo->
+    <%= search_form_for @q do |f| %>
+    <div class="form-group separetor">
+      <%= f.search_field :comments_body_cont, :class=> "form-control", :placeholder => "Pesquisar por comentário" %>
+      <%= f.submit :class=>"btn btn-primary" %>
+    </div>
+    <% end %>
+
 
 
   <table class="table">
@@ -20,10 +41,9 @@
         <% @articles.each do |article| %>
         <% unless article.archived? %>
         <td><%= article.id %></td>
-        <td><%= article.title %></td>
+        <td><%= article.title().capitalize %></td>
         <td><%= article.status %></td>
         <td><%= article.created_at %></td>
-        <td><%= article.updated_at %></td>
         <td><%= article.updated_at %></td>
         <td><a href="/articles/<%=article.id%>">See</a></td>
       </tr>
@@ -43,5 +63,10 @@
   width: 45%;
   margin: 0 auto;
   margin-top: 2em;
+}
+.separetor{
+  display:flex;
+  gap:10px;
+  margin-bottom:2em;
 }
 </style>

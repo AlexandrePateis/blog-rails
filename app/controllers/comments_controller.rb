@@ -1,6 +1,10 @@
 class CommentsController < ApplicationController
     
     http_basic_authenticate_with name: "dhh", password: "secret", only: :destroy
+    def index
+        @q = Comments.ransack(params[:q])
+        @come = @q.result(distinct: true)
+      end
 
     def create 
         @article = Article.find(params[:article_id])
